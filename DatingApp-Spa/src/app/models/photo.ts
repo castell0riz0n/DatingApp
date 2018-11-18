@@ -5,3 +5,10 @@ export interface Photo {
     dateAdded: Date;
     isMain: boolean;
 }
+
+export interface PhotoUrls {
+    small: string;
+    medium: string;
+    big: string;
+    description: string;
+}
