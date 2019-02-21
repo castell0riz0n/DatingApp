@@ -14,6 +14,7 @@ using DatingApp.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Options;
 
 namespace DatingApp.API.Controllers
@@ -45,6 +46,20 @@ namespace DatingApp.API.Controllers
                 );
 
             _cloudinary = new Cloudinary(acc);
+        }
+
+        [Route("all/{id}")]
+        [HttpGet]
+        public async Task<IActionResult> GetUserPhotos(int id)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var userPhotos = await _repo.GetUserPhotos(id);
+            var photos = _mapper.Map<ICollection<Photo>, ICollection<PhotoForReturnDto>>(userPhotos);
+            return Ok(photos);
         }
 
         [HttpGet("{id}", Name = "GetPhoto")]

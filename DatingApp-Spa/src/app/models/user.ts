@@ -5,7 +5,6 @@ export interface User {
     username: string;
     knownAs: string;
     age: number;
-    gender: string;
     created: Date;
     lastActive: Date;
     photoUrl: string;
@@ -14,5 +13,5 @@ export interface User {
     interests?: string;
     introduction?: string;
     lookingFor?: string;
-    photos?: Photo[];
+    photo?: Photo[];
 }

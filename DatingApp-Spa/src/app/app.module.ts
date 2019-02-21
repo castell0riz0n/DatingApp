@@ -17,6 +17,7 @@ import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 
 import { AuthService } from './services/auth.service';
 import { AlertifyService } from './services/alertify.service';
@@ -44,7 +45,8 @@ export function tokenGetter() {
       MessagesComponent,
       MemberCardComponent,
       MemberDetailComponent,
-      MemberEditComponent
+      MemberEditComponent,
+      PhotoEditorComponent
    ],
    imports: [
    BrowserModule,

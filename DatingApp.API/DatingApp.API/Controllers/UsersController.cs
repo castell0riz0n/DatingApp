@@ -40,6 +40,11 @@ namespace DatingApp.API.Controllers
         {
             var user = await _repo.GetUser(id);
             var userToReturn = _mapper.Map<UserForDetailedDto>(user);
+
+            var photos = await _repo.GetUserPhotos(user.Id);
+            var mappedPhotos = _mapper.Map<ICollection<Photo>, ICollection<PhotosForDetailsDto>>(photos);
+            userToReturn.Photo = mappedPhotos;
+
             return Ok(userToReturn);
         }
 
