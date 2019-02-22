@@ -15,6 +15,7 @@ export class MemberEditComponent implements OnInit {
   // in ViewChaild('Name'), Name Should be exact same name as the #name in the Template
   @ViewChild('editProfileForm') editForm: NgForm;
   user: User;
+  photoUrl: string;
 
   // prevent user from accidently close the window
   @HostListener('window:beforeunload', ['$event'])
@@ -36,6 +37,7 @@ export class MemberEditComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.user = data['user'];
     });
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl)
   }
 
   updateUser() {
@@ -46,5 +48,9 @@ export class MemberEditComponent implements OnInit {
     }, error => {
       this.alertify.error(error);
     });
+  }
+
+  updateMainPhoto(photoUrl) {
+    this.user.photoUrl = photoUrl;
   }
 }

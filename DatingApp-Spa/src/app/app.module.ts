@@ -7,6 +7,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AppRoutingModule } from './app-routing.module';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -58,11 +59,12 @@ export function tokenGetter() {
       JwtModule.forRoot({
          config: {
             tokenGetter: tokenGetter,
-            whitelistedDomains: ['localhost:10000'],
-            blacklistedRoutes: ['localhost:10000/api/auth']
+            whitelistedDomains: ['localhost:10005'],
+            blacklistedRoutes: ['localhost:10005/api/auth']
          }
       }),
-      NgxGalleryModule
+      NgxGalleryModule,
+      FileUploadModule
    ],
    providers: [
       AuthService,

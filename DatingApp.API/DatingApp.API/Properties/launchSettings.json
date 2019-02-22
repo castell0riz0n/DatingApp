@@ -7,7 +7,7 @@
       "sslPort": 0
     },
     "iisExpress": {
-      "applicationUrl": "http://localhost:10000",
+      "applicationUrl": "http://localhost:10005",
       "sslPort": 44325
     }
   },
@@ -21,7 +21,7 @@
       }
     },
     "DatingApp.API": {
-      "commandName": "IISExpress",
+      "commandName": "IIS",
       "launchUrl": "api/values",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
