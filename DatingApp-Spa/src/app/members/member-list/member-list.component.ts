@@ -14,21 +14,27 @@ export class MemberListComponent implements OnInit {
   pagination: Pagination;
   users: User[];
   user: User = JSON.parse(localStorage.getItem('user'));
-  genderList = [{value: 'male', display: 'Male'}, {value: 'female', display: 'Female'}];
+  genderList = [
+    { value: 'male', display: 'Male' },
+    { value: 'female', display: 'Female' }
+  ];
   userParams: any = {};
   constructor(
     private alertify: AlertifyService,
     private userService: UserService,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.route.data.subscribe(data => {
-      this.users = data['users'].result;
-      this.pagination = data['users'].pagination;
-    }, error => {
+    this.route.data.subscribe(
+      data => {
+        this.users = data['users'].result;
+        this.pagination = data['users'].pagination;
+      },
+      error => {
         this.alertify.error(error);
-    });
+      }
+    );
 
     this.userParams.gender = this.user.gender === 'female' ? 'male' : 'female';
     this.userParams.minAge = 18;
@@ -42,7 +48,6 @@ export class MemberListComponent implements OnInit {
   }
 
   resetFilters() {
-
     this.userParams.gender = this.user.gender === 'female' ? 'male' : 'female';
     this.userParams.minAge = 18;
     this.userParams.maxAge = 60;
@@ -50,13 +55,20 @@ export class MemberListComponent implements OnInit {
   }
 
   loadUsers() {
-    this.userService.getUsers(this.pagination.currentPage, this.pagination.itemsPerPage, this.userParams)
-                    .subscribe((res: PaginatedResult<User[]>) => {
-      this.users = res.result;
-      this.pagination = res.pagination;
-    }, error => {
-      this.alertify.error(error);
-    });
+    this.userService
+      .getUsers(
+        this.pagination.currentPage,
+        this.pagination.itemsPerPage,
+        this.userParams
+      )
+      .subscribe(
+        (res: PaginatedResult<User[]>) => {
+          this.users = res.result;
+          this.pagination = res.pagination;
+        },
+        error => {
+          this.alertify.error(error);
+        }
+      );
   }
-
 }
