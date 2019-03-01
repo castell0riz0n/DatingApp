@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserService } from './../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,6 +6,7 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { PhotoUrls } from 'src/app/models/photo';
 import { forEach } from '@angular/router/src/utils/collection';
+import { TabsetComponent } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-member-detail',
@@ -18,6 +19,7 @@ export class MemberDetailComponent implements OnInit {
   user: User;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+  @ViewChild('memberTabs') memberTabs: TabsetComponent;
   constructor(
     private userService: UserService,
     private alertify: AlertifyService,
@@ -28,6 +30,13 @@ export class MemberDetailComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(
       data => { this.user = data['user']; });
+
+      /* this added for directly use query string to
+         select and open messages tab when component initialize .*/
+      this.route.queryParams.subscribe(params => {
+        const selectedTab = params['tab'];
+        this.memberTabs.tabs[selectedTab > 0 ? selectedTab : 0].active = true;
+      });
 
     this.galleryOptions = [
       {
@@ -54,5 +63,9 @@ export class MemberDetailComponent implements OnInit {
       });
     }
     return imageUrls;
+  }
+
+  selectTab(tabId: number) {
+    this.memberTabs.tabs[tabId].active = true;
   }
 }

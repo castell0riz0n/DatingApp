@@ -21,6 +21,7 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 
 import { AuthService } from './services/auth.service';
 import { AlertifyService } from './services/alertify.service';
@@ -32,6 +33,7 @@ import { MemberListResolver } from './resolvers/member-list.resolver';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberEditResolver } from './resolvers/member-edit.resolver';
 import { ListsResolver } from './resolvers/list.resolver';
+import { MessagesResolver } from './resolvers/messages.resolver';
 import { PreventUnsavedChanges } from './guards/prevent-unsaved-changes.guard';
 
 export function tokenGetter() {
@@ -51,10 +53,11 @@ export function tokenGetter() {
       MemberDetailComponent,
       MemberEditComponent,
       PhotoEditorComponent,
-      TimeAgoPipe
+      TimeAgoPipe,
+      MemberMessagesComponent
    ],
    imports: [
-   BrowserModule,
+      BrowserModule,
       AppRoutingModule,
       HttpClientModule,
       FormsModule,
@@ -84,6 +87,7 @@ export function tokenGetter() {
       MemberListResolver,
       MemberEditResolver,
       ListsResolver,
+      MessagesResolver,
       PreventUnsavedChanges
    ],
    bootstrap: [
