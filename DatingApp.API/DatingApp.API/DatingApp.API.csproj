@@ -5,6 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20181113070656_InitialDataBase.cs" />
+    <Compile Remove="Migrations\20181113070656_InitialDataBase.Designer.cs" />
+    <Compile Remove="Migrations\20181113093653_AddUsersEntity.cs" />
+    <Compile Remove="Migrations\20181113093653_AddUsersEntity.Designer.cs" />
+    <Compile Remove="Migrations\20181115130424_ExtendsUserClass.cs" />
+    <Compile Remove="Migrations\20181115130424_ExtendsUserClass.Designer.cs" />
+    <Compile Remove="Migrations\20181118084440_AddPublicIdToPhotoModel.cs" />
+    <Compile Remove="Migrations\20181118084440_AddPublicIdToPhotoModel.Designer.cs" />
+    <Compile Remove="Migrations\20190228090742_AddLikeTable.cs" />
+    <Compile Remove="Migrations\20190228090742_AddLikeTable.Designer.cs" />
+    <Compile Remove="Migrations\20190228140644_AddMessagesEntity.cs" />
+    <Compile Remove="Migrations\20190228140644_AddMessagesEntity.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Data\DatingRepository.cs~RF39d888.TMP" />
   </ItemGroup>
 

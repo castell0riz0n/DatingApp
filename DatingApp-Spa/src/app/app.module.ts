@@ -1,3 +1,4 @@
+// Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,8 +9,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
-import { BsDatepickerModule, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
+import { BsDatepickerModule, PaginationModule, ButtonsModule, ModalModule } from 'ngx-bootstrap';
 
+
+// Components
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
@@ -22,7 +25,11 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
 
+// Custom services and things
 import { AuthService } from './services/auth.service';
 import { AlertifyService } from './services/alertify.service';
 import { ErrorInterceptorProvider } from './services/error.interceptor';
@@ -35,6 +42,9 @@ import { MemberEditResolver } from './resolvers/member-edit.resolver';
 import { ListsResolver } from './resolvers/list.resolver';
 import { MessagesResolver } from './resolvers/messages.resolver';
 import { PreventUnsavedChanges } from './guards/prevent-unsaved-changes.guard';
+import { HasRoleDirective } from './_directives/has-role.directive';
+import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
+
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -54,10 +64,15 @@ export function tokenGetter() {
       MemberEditComponent,
       PhotoEditorComponent,
       TimeAgoPipe,
-      MemberMessagesComponent
+      MemberMessagesComponent,
+      AdminPanelComponent,
+      HasRoleDirective,
+      UserManagementComponent,
+      PhotoManagementComponent,
+      RolesModalComponent
    ],
    imports: [
-      BrowserModule,
+   BrowserModule,
       AppRoutingModule,
       HttpClientModule,
       FormsModule,
@@ -66,6 +81,7 @@ export function tokenGetter() {
       PaginationModule.forRoot(),
       BsDropdownModule.forRoot(),
       TabsModule.forRoot(),
+      ModalModule.forRoot(),
       JwtModule.forRoot({
          config: {
             tokenGetter: tokenGetter,
@@ -89,6 +105,9 @@ export function tokenGetter() {
       ListsResolver,
       MessagesResolver,
       PreventUnsavedChanges
+   ],
+   entryComponents: [
+      RolesModalComponent
    ],
    bootstrap: [
       AppComponent
